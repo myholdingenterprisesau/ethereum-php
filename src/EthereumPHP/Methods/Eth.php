@@ -324,5 +324,18 @@ class Eth extends AbstractMethods
         return ($response->getRpcResult()) ? $response->getRpcResult() : [];
     }
 
+    public function getLogs(string $fromBlock, string $toBlock, string $address, array $topics) {
+        $response = $this->client->send(
+            $this->client->request(1, 'eth_getLogs', [
+                'fromBlock' => $fromBlock,
+                'toBlock' => $toBlock,
+                'address' => $address,
+                'topics' => $topics
+            ])
+        );
+
+        return ($response->getRpcResult()) ? $response->getRpcResult() : [];
+    }
+
     // TODO: missing filter methods
 }
